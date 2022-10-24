@@ -1,0 +1,82 @@
+1. Reverse a string - a.split('').reverse().join('') (.reverse() is an in-place operation when used alone and not in series with other methods like mentioned).
+2. "for of" loop introduced in ES2015.
+3. 'a' + 'b' = 'ab' exists in JS too.
+4. Running JS files with "node inspect<filename>.js". Type "c"/"cont"/"continue" to continue the execution and pause in the next console.log/debugger statement and type "repl" during that time to enter javascript execution terminal to inspect variables/ anything related to JS. To exit out of repl, press Ctrl+C and then keep pressing "c" to move to next steps in execution. If there are no more debugger/console.log statement, CLI will execute it but will stay in debug mode. In this case, next time you press "c", it will throw error as there's nothing left to be executed (it will display "Waiting for the debugger to disconnect", in this case).
+5. Don't give the perfect solution right away. Give a solution, talk about drawbacks and then give the perfect solution to the problem.
+5. JS .every()
+6. Number(10,33) = 10
+   Number(10_33) = 1033
+   Number(10 33) = Error or NAN
+   Number(0133) = 539
+7. parseInt, Math.sign and toString
+8. .replace doesn't throw error if character to be replaced doesn't exist.
+9. (12).toString() works whereas 12.toString() doesn't.
+10. "for of" gives element whereas "for in" gives index (conventional definition - "for of" iterates over values whereas "for in" iterates over keys. So, "for in" works on object iterables whereas "for of" doesn't)
+11. Optional chaining - ES2020 (Ex: `a?.b ? true : false` i.e. If a is not undefined and b exists in a then return true, else return false)
+12. Increment operators are in-place (Ex: a=0; ++a OR a++)
+13. Computed Property Names - ES6 (Ex: `a={};b='c';a={...a, b:6}` gives `a={b:6}`. To get `a={'c':6}`, use `a={...a, [b]: 6}`. Use it to compute only keys and not values. Ex: `b=6;a={[b]:6}` will give `{6:6}` whereas `b=6;a={[b]:[b]}` shouldn't be used. Instead, it should be `b=6;a={[b]:b}` since value will automatically be computed as expression.)
+14. Deep Copy (copy without references) : `a ={...b}` OR `a=JSON.parse(JSON.stringify(b))` . Both the methods work for both objects and arrays.
+    Shallow Copy (copy with references) : `a = b` or `a = {..b} (if b is nested object ex: {'z':5,'q':{'vv': 6}} then property q's object copied will still have the reference if the spread method is used, unless we spread each and every nested object/property that has object.)
+15. In javascript, '8' > '7' -> true (even though they are strings as it auto-converts it to numbers. Strings written as mentioned in point 6 will also be converted to the corresponding numbers as mentioned in point 6. Check different conditions in the console with strings and numbers comparison also by mixing charaters with strings during that comparison.)
+16. jest.fn() is used on functions that need to be spied upon. Every iteration/call for that function execution is included in the first array. Ex calls[0][0] then calls[1][0] and so on.
+17. If you access an index not in an array in the standard method, it won't throw error. Ex: a = [1,2]; a[1000] -> undefined (not error in this case).
+18. a = [1,2]; a.slice(0, 1000) -> no error. It will only slice till last element.
+19. .sort() works on alphabets in an array but not on string.
+20. `Object.keys(obj)` to get an array of keys in `obj` object.
+21. When comparing two arrays for equality, try to compare them after converting to strings because arrays might decide equality not just on the values inside them but also on the reference that the array is pointing towards.
+22. `'abc'[0]` -> 'a'; `('abc').length` -> 3; `('!').toLowerCase()` -> '!'
+23. `a = [1,2,3]; a[0:2]` method of slicing won't work in JS.
+24. `.push()` and `.pop()` add and remove items from the end of the array respectively in JS.
+25. Write pseudo code before main.
+26. ternary expressions - `? :`
+27. In recursive functions, make sure to use return before the function call to avoid function executing the remaining parts of the code.
+28. Check the diagrams from the 11th and 12th exercises to identify the steps for recursion.
+29. regex - `/<regex pattern>/<regex flag>` (this statement should not be put inside quotes.) OR `const var = new RegExp('<regex>','<flags>')` (Here the items should be inside quotes)
+30. To combine multiple flags, ex: `/<regex pattern>/gi` (gi or ig, order doesn't matter; g is used to say don't stop at first match and i is used to denote case insensitive matching.)
+31. To comment a block of code in vscode - alt+shift+a
+32. .includes() method (use array for comparison for convenience. Check vowels.js program)
+33. Even though ternary operators return values, you cannot use it at the end of the functin just to return value out of the function. You will have to use return statement alongside it to return the value from the function.
+34. `a=[];a[3]=33` -> a=[null,null,null, 33]
+35. Runtime and Space Complexities - Big O Notation.
+36. One solution for optimizing runtime complexities - Memoization (Caching)
+37. `fn.apply(obj, args)` -> Borrow function 'fn' to be used on object 'obj' with arguments 'args' that will be used while calling function 'fn'. 'obj' will be mapped to all the instances wherein the 'this' keyword is used inside the 'fn' function.
+38. apply vs call vs bind -> for apply, args will be passed as array whereas for call, it will be passed directly with comma separation. For bind, args will be passed like in call but the end result will be assigned to another variable and it will execute only when the variable is called as a function with no arguments.
+39. Queue - FIFO ; Enqueuing and Dequeuing.
+40. To create a queue : Create a Queue class, use array inside it, limit the methods available to only pop and unshift, to simulate a queue.
+41. Queue (add i.e. .unshift(), remove i.e. .pop()): --->[...]---> (Existing items will move right when new item is added and exit from there when items are removed)
+42. Stack (push i.e. .push(), pop i.e. .pop()): FILO/LIFO - [...]<---
+                                                                 --->
+                                                                     (Existing items will move left when new item is added and when items are removed, the rightmost item will exit)
+    In Queues and stacks, when talking about FIFO/LIFO, don't consider the order in which the latest elements were added. Consider the sequence of elements that were added from the start.
+43. When implementing stacks/queues don't consider their exact array structure. Only consider their FIFO/FILO structures. 
+44. JavaScript has object versions of the primitive data types String, Number, and Boolean. But there is no reason to create complex objects. Primitive values are much faster:
+
+    Use string literals "" instead of new String().
+    Use number literals 50 instead of new Number().
+    Use boolean literals true / false instead of new Boolean().
+    Use object literals {} instead of new Object().
+    Use array literals [] instead of new Array().
+    Use pattern literals /()/ instead of new RegExp().
+    Use function expressions () {} instead of new Function().
+
+45. function Person(first, last, age, eye) {
+        this.firstName = first;
+        this.lastName = last;
+        this.age = age;
+        this.eyeColor = eye;
+        }
+
+    // Create a Person object
+    const myFather = new Person("John", "Doe", 50, "blue");
+
+    // Display age
+    console.log(myFather.age)
+
+    //Person function is a constructor here since we are using `this` to define variables and later on, use that variable from the object that was created from this function in class syntax
+46. Using .prototype, we can add any property to class/constructor function directly.
+47. When we use `this` in an independent function, it points to global object/context. To map it to an object, one of the methods is to use apply. Ex: independentFunction.apply(object)
+48. If we define a function using Function.prototype.<FunctionName>, we can use it from inside another function. Ex: <AnotherFunction>.<ThisPrototypeFunction>
+49. `describe.skip()` to skip the tests in that block. 
+50. Linked list -> Consists of a bunch of nodes that have a value and a reference to the next item.
+51. In linked lists, first element = head
+52. `const a = function (val){console.log(val)}; a(5)` -> 5 (Notice how different argument is passed and argument that are passed by us are automatically linked as the arguments to the function inside. Also, instead of writing function (val), we can also write function <functionname>(val), as function name is insignificant in this case.)
